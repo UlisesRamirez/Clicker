@@ -6,4 +6,11 @@ class Money:
     def moneySec(self):
         self.total += self.sec
         print(self.total)
-    
+
+    def upgrade(self):
+        print('upgrade')
+
+class Upgrade:
+    def __init__(self):
+        self.timesBought = 1
+        self.price 
