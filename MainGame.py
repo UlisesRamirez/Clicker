@@ -2,16 +2,14 @@ from Resources import MoneyClass
 
 # As the name says it's the dictionary of all the functions
 
-functionDictionary = {
-    'help': help
-}
 mainPlayer = MoneyClass.Money(100)
 
 #main game loop, needs to read input and perform actions
 
 def inputClassification(function):
+    print(function[0])
     if function[0] in functionDictionary:
-        verb = functionDictionary[function]
+        verb = functionDictionary[function[0]]
     else:
         print("Unknown function {}".format(function))
         print("Type help for a list of the commands. ")
@@ -24,10 +22,28 @@ def inputClassification(function):
         print(verb("nothing"))
 
 def help(noun):
-    print('')
+    print('This game is about gaining as much money as you can.')
+    print('For that you have turns in wich you can pucharse upgrades,')
+    print('upgrades cost a certain amount of money per turn')
+    print('that you can check with the \'status\' command')
 
-def buy(noun):
-    print('')
+def Upgrade(noun):
+    try:
+        noun.buyUpgrade(mainPlayer)
+    except NameError:
+        print('no upgrade {} is available'.format(noun))
+    finally:
+        return('Next move. ')
+
+def checkStatus(noun):
+    print('unfinished')
+
+functionDictionary = {
+    'help': help,
+    'buy': Upgrade,
+    'status': checkStatus
+}
+
 while True:
-    command = str(input(': ').split())
+    command = input(': ').split()
     inputClassification(command)
