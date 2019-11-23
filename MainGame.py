@@ -1,13 +1,22 @@
 from Resources import MoneyClass
+from Resources import UpgradesClass
 
 # As the name says it's the dictionary of all the functions
 
 mainPlayer = MoneyClass.Money(100)
 
-#main game loop, needs to read input and perform actions
+# --------------- Upgrades initialization ---------------
+upgradesCount = 0
+upgrades = []
 
-def inputClassification(function):
-    print(function[0])
+while upgradesCount < 10:
+    upgrades.append(UpgradesClass.Upgrade(1 + (100 * len(upgrades)), 10 + (10 * len(upgrades))))
+    upgradesCount += 1
+
+# main game loop, needs to read input and perform actions
+
+def inputClassification():
+    function = input(': ').split()
     if function[0] in functionDictionary:
         verb = functionDictionary[function[0]]
     else:
@@ -17,9 +26,9 @@ def inputClassification(function):
     
     if len(function) >= 2:
         argument = function[1]
-        print(verb(argument))
+        verb(argument)
     else:
-        print(verb("nothing"))
+        verb("nothing")
 
 def help(noun):
     print('This game is about gaining as much money as you can.')
@@ -33,17 +42,26 @@ def Upgrade(noun):
     except NameError:
         print('no upgrade {} is available'.format(noun))
     finally:
-        return('Next move. ')
+        inputClassification()
 
 def checkStatus(noun):
     print('unfinished')
 
+def closing(noun):
+    exit() 
+
 functionDictionary = {
     'help': help,
     'buy': Upgrade,
-    'status': checkStatus
+    'status': checkStatus,
+    'exit': closing
 }
 
 while True:
-    command = input(': ').split()
-    inputClassification(command)
+    inputClassification()
+    mainPlayer.moneySecond()
+    mainPlayer.costsSecond()
+    count = 0
+    for upgrade in upgrades:
+        print(upgrades[count].price)
+        count += 1

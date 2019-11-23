@@ -2,23 +2,19 @@ class Money:
     def __init__(self, initial):
         self.total = initial
         self.income = 1
+        self.cost = 0
         
-    def monetSecond(self):
+    def moneySecond(self):
         self.total += self.income
-        print(self.total)
 
-    def upgrade(self):
-        print('upgrade')
+    def costsSecond(self):
+        self.total -= self.cost
+        if self.total - self.cost < 0:
+            print('You lose')
+            exit()
+        elif self.total - (self.cost * 2) < 0:
+            print('You\'re going to lose in the next turn...')
+            print('Do something about it')
 
-class Upgrade:
-    def __init__(self):
-        self.timesBought = 1
-        self.price = 10 * self.timesBought
-
-    def buyUpgrade(self, buyer):
-        buyer.income += 10 # Amount of increment for each turn
-        self.timesBought += 1
-        self.price = 10 * self.timesBought
-        # Number of pucharses of the upgrade
-        # defines the future price increasing exponentially
-        
+    def upgrade(self, upgrade):
+        upgrade.buyUpgrade(self)
