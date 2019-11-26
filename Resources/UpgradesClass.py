@@ -5,7 +5,6 @@ class Upgrade:
         self.added = income
         self.cost = 1
 
-
     def buyUpgrade(self, buyer):
         if buyer.total - self.price >= 0:
             buyer.income += self.added # Amount of increment for each turn

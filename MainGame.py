@@ -1,8 +1,6 @@
 from Resources import MoneyClass
 from Resources import UpgradesClass
 
-# As the name says it's the dictionary of all the functions
-
 mainPlayer = MoneyClass.Money(100)
 
 # --------------- Upgrades initialization ---------------
@@ -14,7 +12,6 @@ while upgradesCount < 10:
     upgradesCount += 1
 
 # main game loop, needs to read input and perform actions
-
 def inputClassification():
     function = input(': ').split()
     if function[0] in functionDictionary:
@@ -30,6 +27,7 @@ def inputClassification():
     else:
         verb("nothing")
 
+# -------------- Game functions definitions -------------
 def help(noun):
     print('This game is about gaining as much money as you can.')
     print('For that you have turns in wich you can pucharse upgrades,')
@@ -50,6 +48,8 @@ def checkStatus(noun):
 def closing(noun):
     exit() 
 
+# ---------- Setup of the functions dictionary ----------
+# As the name says it's the dictionary of all the functions
 functionDictionary = {
     'help': help,
     'buy': Upgrade,
