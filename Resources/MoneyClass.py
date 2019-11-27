@@ -1,9 +1,24 @@
+from Resources.UpgradesClass import Upgrade
+
 class Money:
     def __init__(self, initial):
         self.total = initial
         self.income = 1
         self.cost = 0
-        
+    
+    def initializeUpgrades(self):
+        upgradesCount = 0
+        upgrades = []
+        upgradesReferences = []
+
+        while upgradesCount < 10:
+            basePrice = 1 + (100 * len(upgrades))
+            income = 10 + (10 * len(upgrades))
+            upgrades.append(Upgrade(basePrice, income, self))
+            for upgrade in upgrades:
+                upgradesReferences.append('0')
+            upgradesCount += 1
+
     def moneySecond(self):
         self.total += self.income
 
@@ -17,4 +32,7 @@ class Money:
             print('Do something about it')
 
     def upgrade(self, upgrade):
-        upgrade.buyUpgrade(self)
+        upgrade.buyUpgrade()
+    
+    def deupgrade(self, upgrade):
+        upgrade.sellUpgrade()
