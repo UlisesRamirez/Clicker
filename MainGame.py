@@ -4,15 +4,7 @@ from Resources import UpgradesClass
 mainPlayer = MoneyClass.Money(100)
 mainPlayer.initializeUpgrades()
 
-# --------------- Upgrades initialization ---------------
-upgradesCount = 0
-upgrades = []
 
-while upgradesCount < 10:
-    basePrice = 1 + (100 * len(upgrades))
-    income = 10 + (10 * len(upgrades))
-    upgrades.append(UpgradesClass.Upgrade(basePrice, income))
-    upgradesCount += 1
 
 # main game loop, needs to read input and perform actions
 def inputClassification():

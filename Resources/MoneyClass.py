@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, 'C:/Users/Ulises/Desktop/Projects/Python/Clicker')
 from Resources.UpgradesClass import Upgrade
 
 class Money:
@@ -5,19 +7,14 @@ class Money:
         self.total = initial
         self.income = 1
         self.cost = 0
-    
-    def initializeUpgrades(self):
-        upgradesCount = 0
-        upgrades = []
-        upgradesReferences = []
-
-        while upgradesCount < 10:
-            basePrice = 1 + (100 * len(upgrades))
-            income = 10 + (10 * len(upgrades))
-            upgrades.append(Upgrade(basePrice, income, self))
-            for upgrade in upgrades:
-                upgradesReferences.append('0')
-            upgradesCount += 1
+        self.upgradeCluster = {}
+        while len(self.upgradeCluster) < 10:
+            tempUpgrade = {}
+            while len(tempUpgrade) < 10:
+                basePrice = 1 + (100 * len(tempUpgrade)) * (len(self.upgradeCluster) + 1)
+                income = 10 + (10 * len(tempUpgrade)) * (len(self.upgradeCluster) + 1)
+                tempUpgrade[len(tempUpgrade) + 1] = Upgrade(basePrice, income, self)
+            self.upgradeCluster[len(self.upgradeCluster) + 1] = tempUpgrade
 
     def moneySecond(self):
         self.total += self.income
