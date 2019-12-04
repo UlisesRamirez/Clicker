@@ -29,7 +29,13 @@ class Money:
             print('Do something about it')
 
     def upgrade(self, upgrade):
-        upgrade.buyUpgrade()
+        if upgrade in self.upgradeCluster:
+            upgrade.buyUpgrade()
+        else:
+            print('Wrong name entered. ')
     
     def deupgrade(self, upgrade):
-        upgrade.sellUpgrade()
+        if upgrade in self.upgradeCluster:
+            upgrade.sellUpgrade()
+        else:
+            print('Wrong name entered. ')

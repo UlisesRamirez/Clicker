@@ -4,9 +4,8 @@ from Resources import UpgradesClass
 mainPlayer = MoneyClass.Money(100)
 mainPlayer.initializeUpgrades()
 
-
-
-# main game loop, needs to read input and perform actions
+# main game function, needs to read input and perform actions
+# It's called in the final while loop
 def inputClassification():
     function = input(': ').lower().split()
     if function[0] in functionDictionary:
@@ -71,6 +70,9 @@ functionDictionary = {
     'exit': closing
 }
 
+# ------------------ Loop of the game ------------------
+# goes to the main function, and loops until the game closes
+# the other two functions manage the game money
 while True:
     inputClassification()
     mainPlayer.moneySecond()
